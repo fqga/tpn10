@@ -46,30 +46,29 @@
 /* === Macros definitions ====================================================================== */
 
 #ifndef INPUT_INSTANCES
-    #define INPUT_INSTANCES        4
+#define INPUT_INSTANCES 6
 #endif
 
-
 #ifndef OUTPUT_INSTANCES
-    #define OUTPUT_INSTANCES       4
+#define OUTPUT_INSTANCES 6
 #endif
 
 /* === Private data type declarations ========================================================== */
 
 //! Estructura para almacenar el descriptor de una entrada digital
 struct digital_input_s {
-    uint8_t port;           //!< Puerto GPIO de la entrada digital
-    uint8_t pin;            //!< Terminal del puerto GPIO de la entrada digital
-    bool inverted;          //!< La entrada opera con lógica invertida
-    bool last_state;        //!< Bandera con el ultimo estado reportado de la entrada
-    bool allocated;         //!< Bandera para indicar que el descriptor esta en uso
+    uint8_t port;    //!< Puerto GPIO de la entrada digital
+    uint8_t pin;     //!< Terminal del puerto GPIO de la entrada digital
+    bool inverted;   //!< La entrada opera con lógica invertida
+    bool last_state; //!< Bandera con el ultimo estado reportado de la entrada
+    bool allocated;  //!< Bandera para indicar que el descriptor esta en uso
 };
 
 //! Estructura para almacenar el descriptor de una salida digital
 struct digital_output_s {
-    uint8_t port;           //!< Puerto GPIO de la salida digital
-    uint8_t pin;            //!< Terminal del puerto GPIO de la salida digital
-    bool allocated;         //!< Bandera para indicar que el descriptor esta en uso
+    uint8_t port;   //!< Puerto GPIO de la salida digital
+    uint8_t pin;    //!< Terminal del puerto GPIO de la salida digital
+    bool allocated; //!< Bandera para indicar que el descriptor esta en uso
 };
 
 /* === Private variable declarations =========================================================== */
@@ -91,9 +90,9 @@ digital_output_t DigitalOutputAllocate(void);
 digital_input_t DigitalInputAllocate(void) {
     digital_input_t input = NULL;
 
-    static struct digital_input_s instances[INPUT_INSTANCES] =  {0};
+    static struct digital_input_s instances[INPUT_INSTANCES] = {0};
 
-    for(int index = 0; index < INPUT_INSTANCES; index++) {
+    for (int index = 0; index < INPUT_INSTANCES; index++) {
         if (!instances[index].allocated) {
             instances[index].allocated = true;
             input = &instances[index];
@@ -106,9 +105,9 @@ digital_input_t DigitalInputAllocate(void) {
 digital_output_t DigitalOutputAllocate(void) {
     digital_output_t output = NULL;
 
-    static struct digital_output_s instances[OUTPUT_INSTANCES] =  {0};
+    static struct digital_output_s instances[OUTPUT_INSTANCES] = {0};
 
-    for(int index = 0; index < OUTPUT_INSTANCES; index++) {
+    for (int index = 0; index < OUTPUT_INSTANCES; index++) {
         if (!instances[index].allocated) {
             instances[index].allocated = true;
             output = &instances[index];
