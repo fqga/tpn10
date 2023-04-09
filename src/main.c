@@ -99,7 +99,7 @@ void Azul(void * parameters) {
     }
 }
 
-void Roja(void * parameters) {
+void Rojo(void * parameters) {
     board_t param = parameters;
 
     while (true) {
@@ -109,7 +109,7 @@ void Roja(void * parameters) {
     }
 }
 
-void Amarilla(void * parameters) {
+void Amarillo(void * parameters) {
     board_t param = parameters;
 
     while (true) {
@@ -131,7 +131,7 @@ void Verde(void * parameters) {
     }
 }
 
-void TecScan(void * parameters) {
+void Teclado(void * parameters) {
     // parametros_t param = parameters;
 
     while (true) {
@@ -181,10 +181,10 @@ int main(void) {
 
     /* Creación de las tareas */
     xTaskCreate(Azul, "Azul", configMINIMAL_STACK_SIZE, (void *)board, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(Roja, "Roja", configMINIMAL_STACK_SIZE, (void *)board, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(Amarilla, "Amarilla", configMINIMAL_STACK_SIZE, (void *)board, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(Rojo, "Rojo", configMINIMAL_STACK_SIZE, (void *)board, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(Amarillo, "Amarillo", configMINIMAL_STACK_SIZE, (void *)board, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(Verde, "Verde", configMINIMAL_STACK_SIZE, (void *)board, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(TecScan, "TecScan", configMINIMAL_STACK_SIZE, (void *)board, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(Teclado, "TecScan", configMINIMAL_STACK_SIZE, (void *)board, tskIDLE_PRIORITY + 1, NULL);
 
     /* Arranque del sistema operativo */
     vTaskStartScheduler();
